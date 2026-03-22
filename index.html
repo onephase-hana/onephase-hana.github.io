@@ -4,235 +4,148 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>박하나 — UI/UX 서비스 기획자</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&family=DM+Mono:wght@300;400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <style>
-  :root {
-    --bg: #F7F5F0;
-    --bg2: #EEEAE2;
-    --ink: #1C1B18;
-    --ink2: #5C5A54;
-    --ink3: #9B9890;
-    --accent: #C4622D;
-    --accent2: #8B3A1A;
-    --line: rgba(28,27,24,0.12);
-    --purple: #4A3F7A;
-    --teal: #1D6B5A;
-    --blue: #1A4B7A;
-    --serif: 'Noto Serif KR', serif;
-    --sans: 'Noto Sans KR', sans-serif;
-    --mono: 'DM Mono', monospace;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+:root{
+  --bg:#FAFAF7;--bg2:#F2F0EA;--bg3:#EEECEA;
+  --ink:#1A1A18;--ink2:#5A5A54;--ink3:#A8A8A0;
+  --pink:#F2C4CE;--pink2:#E8A0B0;
+  --line:#E6E4DC;--line2:#D8D6CE;
+  --sans:'Pretendard',-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.7;overflow-x:hidden;}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.25rem 3rem;
-    background: rgba(247,245,240,0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-name { font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; color: var(--ink2); }
-  .nav-links { display: flex; gap: 2rem; }
-  .nav-links a { font-size: 12px; color: var(--ink3); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(250,250,247,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+.nav-name{font-size:13px;font-weight:700;letter-spacing:-0.01em;color:var(--ink);}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-size:12px;font-weight:500;color:var(--ink3);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--ink);}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 3rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg-text {
-    position: absolute; top: 50%; right: -2rem; transform: translateY(-50%);
-    font-family: var(--serif); font-size: clamp(100px, 18vw, 220px); font-weight: 300;
-    color: transparent; -webkit-text-stroke: 1px rgba(28,27,24,0.06);
-    line-height: 1; user-select: none; pointer-events: none; white-space: nowrap;
-  }
-  .hero-label {
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
-    color: var(--accent); margin-bottom: 1.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-name {
-    font-family: var(--serif); font-size: clamp(52px, 9vw, 110px);
-    font-weight: 300; line-height: 1.0; letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-name em { font-style: normal; color: var(--accent); }
-  .hero-desc {
-    max-width: 540px; font-size: 15px; color: var(--ink2); line-height: 1.85;
-    margin-bottom: 2.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
-  .hero-meta {
-    display: flex; gap: 3rem; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
-  .hero-meta-item { }
-  .hero-meta-item .m-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink3); margin-bottom: 3px; }
-  .hero-meta-item .m-val { font-size: 14px; color: var(--ink); font-weight: 400; }
-  .hero-scroll {
-    position: absolute; bottom: 2rem; right: 3rem;
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink3);
-    writing-mode: vertical-rl; display: flex; align-items: center; gap: 10px;
-    opacity: 0; animation: fadeIn 1s 1.2s forwards;
-  }
-  .hero-scroll::after { content: ''; width: 1px; height: 40px; background: var(--ink3); }
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
+.hero-inner{max-width:760px;}
+.hero-eye{font-size:11px;font-weight:600;letter-spacing:0.18em;color:var(--ink3);margin-bottom:1rem;opacity:0;animation:up 0.7s 0.1s forwards;}
+.hero-name{font-size:clamp(56px,10vw,120px);font-weight:800;color:var(--ink);letter-spacing:-0.04em;line-height:0.95;margin-bottom:2rem;opacity:0;animation:up 0.7s 0.25s forwards;}
+.hero-name .ul{display:inline;}
+.hero-desc{font-size:16px;font-weight:400;color:var(--ink2);line-height:1.85;max-width:640px;margin-bottom:3rem;opacity:0;animation:up 0.7s 0.5s forwards;}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2.5rem;opacity:0;animation:up 0.7s 0.4s forwards;}
+.hero-tag{font-size:12px;font-weight:600;padding:6px 16px;border-radius:6px;background:var(--bg3);color:var(--ink2);}
+.hero-meta{display:flex;gap:3rem;opacity:0;animation:up 0.7s 0.65s forwards;}
+.hm-item .hm-l{font-size:9px;font-weight:700;letter-spacing:0.12em;color:var(--ink3);margin-bottom:3px;}
+.hm-item .hm-v{font-size:13px;font-weight:700;color:var(--ink);}
 
-  /* SECTIONS */
-  section { padding: 6rem 3rem; }
-  .section-header {
-    display: flex; align-items: baseline; gap: 1.5rem;
-    margin-bottom: 3.5rem; padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--line);
-  }
-  .section-num { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.08em; }
-  .section-title { font-family: var(--serif); font-size: 28px; font-weight: 300; letter-spacing: -0.01em; }
+/* SECTIONS */
+section{padding:6rem 3rem;}
+.sec-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:3rem;padding-bottom:1.25rem;border-bottom:1px solid var(--line);}
+.sec-n{font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--ink3);}
+.sec-t{font-size:26px;font-weight:800;letter-spacing:-0.02em;}
 
-  /* ABOUT */
-  #about { background: var(--bg); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .about-cell {
-    background: var(--bg); padding: 2rem;
-    transition: background 0.2s;
-  }
-  .about-cell:hover { background: var(--bg2); }
-  .about-cell .ac-icon { font-size: 22px; margin-bottom: 1rem; }
-  .about-cell .ac-title { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; }
-  .about-cell .ac-desc { font-size: 13px; color: var(--ink2); line-height: 1.75; }
-  .about-tagline {
-    margin-top: 2.5rem; padding: 1.75rem 2rem;
-    border-left: 3px solid var(--accent);
-    background: var(--bg2);
-    font-family: var(--serif); font-size: 16px; line-height: 1.8; color: var(--ink);
-  }
+/* ABOUT */
+#about{background:var(--bg);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.ac{background:var(--bg);padding:1.75rem;transition:background 0.2s;}
+.ac:hover{background:var(--bg2);}
+.ac-svg{margin-bottom:1.25rem;}.ac-t{font-size:14px;font-weight:700;margin-bottom:8px;}
+.ac-d{font-size:13px;color:var(--ink2);line-height:1.75;}
+.tagline{margin-top:1.75rem;padding:1.5rem 1.75rem;border-left:3px solid var(--pink2);background:var(--bg2);border-radius:0 8px 8px 0;font-size:14px;line-height:1.85;color:var(--ink2);}
 
-  /* CAREER */
-  #career { background: var(--bg2); }
-  .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:1px; background: var(--line); }
-  .tl-item { position:relative; margin-bottom: 2.75rem; }
-  .tl-item::before {
-    content:''; position:absolute; left:-2.35rem; top:6px;
-    width:10px; height:10px; border-radius:50%;
-    background: var(--bg2); border: 2px solid var(--ink3);
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .tl-item:hover::before { border-color: var(--accent); background: var(--accent); }
-  .tl-item.current::before { border-color: var(--accent); background: var(--accent); }
-  .tl-period { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.06em; margin-bottom: 4px; }
-  .tl-company { font-size: 17px; font-weight: 500; margin-bottom: 2px; }
-  .tl-role { font-size: 12px; color: var(--ink3); margin-bottom: 10px; }
-  .badge-row { display: flex; flex-wrap: wrap; gap: 5px; }
-  .badge {
-    font-size: 11px; padding: 3px 10px; border-radius: 2px;
-    letter-spacing: 0.02em; font-weight: 400;
-  }
-  .b-blue { background: rgba(26,75,122,0.08); color: var(--blue); border: 1px solid rgba(26,75,122,0.15); }
-  .b-purple { background: rgba(74,63,122,0.08); color: var(--purple); border: 1px solid rgba(74,63,122,0.15); }
-  .b-teal { background: rgba(29,107,90,0.08); color: var(--teal); border: 1px solid rgba(29,107,90,0.15); }
+/* CAREER */
+#career{background:var(--bg2);}
+.tl{position:relative;padding-left:2rem;}
+.tl::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--line2);}
+.tl-item{position:relative;margin-bottom:2.5rem;}
+.tl-item::before{content:'';position:absolute;left:-2.3rem;top:5px;width:9px;height:9px;border-radius:50%;background:var(--bg2);border:2px solid var(--ink3);transition:all 0.2s;}
+.tl-item.now::before{border-color:var(--pink2);background:var(--pink2);}
+.tl-p{font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--ink3);margin-bottom:3px;}
+.tl-c{font-size:16px;font-weight:800;letter-spacing:-0.01em;margin-bottom:2px;}
+.tl-r{font-size:12px;color:var(--ink3);margin-bottom:8px;}
+.bdg-row{display:flex;flex-wrap:wrap;gap:5px;}
+.bdg{font-size:11px;font-weight:500;padding:3px 10px;border-radius:4px;}
+.bd-blue{background:rgba(59,130,246,0.08);color:#1D4ED8;border:1px solid rgba(59,130,246,0.15);}
+.bd-purple{background:rgba(124,58,237,0.08);color:#5B21B6;border:1px solid rgba(124,58,237,0.15);}
+.bd-green{background:rgba(16,185,129,0.08);color:#065F46;border:1px solid rgba(16,185,129,0.15);}
+.bd-gray{background:var(--bg3);color:var(--ink2);border:1px solid var(--line2);}
 
-  /* PROJECTS */
-  #projects { background: var(--bg); }
-  .proj-divider {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
-    color: var(--ink3); margin: 2.5rem 0 1.25rem;
-    padding-bottom: 0.75rem; border-bottom: 1px solid var(--line);
-  }
-  .proj-card {
-    border: 1px solid var(--line); padding: 1.75rem 2rem;
-    margin-bottom: 1rem; position: relative; overflow: hidden;
-    transition: border-color 0.2s, background 0.2s;
-    cursor: default;
-  }
-  .proj-card::before {
-    content:''; position:absolute; top:0; left:0; bottom:0; width:3px;
-    background: var(--line); transition: background 0.2s;
-  }
-  .proj-card:hover { background: var(--bg2); border-color: rgba(28,27,24,0.2); }
-  .proj-card:hover::before { background: var(--accent); }
-  .proj-card.featured::before { background: var(--accent); }
-  .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 6px; }
-  .proj-title { font-size: 15px; font-weight: 500; line-height: 1.4; }
-  .proj-status {
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
-    padding: 3px 8px; border: 1px solid var(--accent); color: var(--accent);
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .proj-meta { font-family: var(--mono); font-size: 11px; color: var(--ink3); margin-bottom: 12px; letter-spacing: 0.03em; }
-  .proj-body { font-size: 13px; color: var(--ink2); line-height: 1.8; margin-bottom: 12px; }
-  .feat-list { list-style: none; margin-bottom: 12px; }
-  .feat-list li { font-size: 13px; color: var(--ink2); line-height: 1.75; padding-left: 16px; position: relative; }
-  .feat-list li::before { content:'—'; position:absolute; left:0; color: var(--accent); font-size: 11px; top: 3px; }
-  .kv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-  .kv { background: var(--bg); border: 1px solid var(--line); padding: 12px 14px; }
-  .kv-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink3); margin-bottom: 5px; }
-  .kv-val { font-size: 13px; color: var(--ink); line-height: 1.6; }
+/* PROJECTS — ACCORDION */
+#projects{background:var(--bg);padding-left:0;padding-right:0;}
+.sec-head-p{padding:0 3rem 1.25rem;margin-bottom:0;border-bottom:1px solid var(--line);}
+.co-btn{width:100%;display:flex;align-items:center;gap:1rem;padding:1.5rem 3rem;background:transparent;border:none;border-top:1px solid var(--line);cursor:pointer;text-align:left;transition:background 0.2s;}
+.co-btn:hover,.co-btn.open{background:var(--bg2);}
+.co-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.co-nm{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-0.01em;}
+.co-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:-0.02em;}
+.co-pr{font-size:11px;font-weight:500;color:var(--ink3);margin-left:auto;}
+.co-ar{font-size:11px;color:var(--ink3);margin-left:1rem;transition:transform 0.3s;}
+.co-btn.open .co-ar{transform:rotate(180deg);}
+.co-panel{display:none;padding:1.5rem 3rem 2.5rem;background:var(--bg2);border-bottom:1px solid var(--line);}
+.co-panel.open{display:block;}
 
-  /* SKILLS */
-  #skills { background: var(--bg2); }
-  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .skill-cell { background: var(--bg2); padding: 1.75rem 2rem; }
-  .sk-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink3); margin-bottom: 1rem; }
-  .sk-item { font-size: 13px; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-  .sk-item::before { content:''; width:4px; height:4px; border-radius:50%; background: var(--accent); flex-shrink: 0; }
-  .sk-learning { opacity: 0.6; }
-  .sk-learning-tag {
-    font-family: var(--mono); font-size: 9px; color: var(--accent);
-    border: 1px solid var(--accent); padding: 1px 5px; letter-spacing: 0.06em;
-  }
+/* proj cards */
+.pj{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:1.5rem;margin-top:1rem;position:relative;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s;}
+.pj::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--line2);border-radius:3px 0 0 3px;transition:background 0.2s;}
+.pj:hover{border-color:var(--line2);}
+.pj:hover::before,.pj.main::before{background:var(--pink2);}
+.pj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:5px;}
+.pj-t{font-size:14px;font-weight:700;line-height:1.4;letter-spacing:-0.01em;}
+.pj-tag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0;}
+.tag-main{background:#FBE9ED;color:#B5435E;}
+.tag-sub{background:var(--bg3);color:var(--ink3);}
+.pj-m{font-size:11px;font-weight:500;color:var(--ink3);margin-bottom:10px;letter-spacing:0.01em;}
+.pj-b{font-size:13px;color:var(--ink2);line-height:1.8;margin-bottom:10px;}
+.fl{list-style:none;}
+.fl li{font-size:13px;color:var(--ink2);line-height:1.75;padding-left:16px;position:relative;}
+.fl li::before{content:'—';position:absolute;left:0;color:var(--pink2);font-size:11px;top:3px;}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.kv-cell{background:var(--bg2);padding:10px 12px;border-radius:6px;}
+.kv-l{font-size:10px;font-weight:700;letter-spacing:0.06em;color:var(--ink3);margin-bottom:4px;}
+.kv-v{font-size:12px;color:var(--ink);line-height:1.6;}
+.pj-link{display:inline-block;margin-top:12px;font-size:11px;font-weight:700;color:var(--pink2);text-decoration:none;letter-spacing:0.04em;border-bottom:1px solid var(--pink);padding-bottom:1px;}
+.sub-pj{margin-top:1rem;padding:1rem 1.25rem;background:var(--bg);border:1px solid var(--line);border-left:2px solid var(--ink3);border-radius:0 8px 8px 0;}
+.sub-t{font-size:13px;font-weight:700;margin-bottom:4px;}
+.sub-d{font-size:12px;color:var(--ink2);line-height:1.7;}
+.ops{margin-top:1rem;padding:0.875rem 1.25rem;background:var(--bg);border:1px solid var(--line);border-radius:8px;}
+.ops-l{font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--ink3);margin-bottom:4px;}
+.ops-v{font-size:12px;color:var(--ink2);}
 
-  /* FOOTER */
-  footer {
-    padding: 3rem; border-top: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-name { font-family: var(--serif); font-size: 18px; font-weight: 300; }
-  .footer-contact { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.06em; }
-  .footer-note { font-family: var(--mono); font-size: 10px; color: var(--ink3); letter-spacing: 0.06em; }
+/* SKILLS */
+#skills{background:var(--bg2);}
+.sk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.sk-cell{background:var(--bg2);padding:1.75rem;}
+.sk-l{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--ink3);margin-bottom:1rem;}
+.sk-item{font-size:13px;color:var(--ink);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
+.sk-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--pink2);flex-shrink:0;}
+.sk-badge{font-size:9px;font-weight:700;color:var(--pink2);border:1px solid var(--pink);padding:1px 6px;border-radius:4px;letter-spacing:0.06em;}
 
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+footer{padding:3rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.ft-name{font-size:18px;font-weight:800;letter-spacing:-0.02em;}
+.ft-note{font-size:11px;color:var(--ink3);font-weight:500;}
 
-  .reveal { opacity:0; transform:translateY(16px); transition: opacity 0.6s, transform 0.6s; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
+.reveal{opacity:0;transform:translateY(14px);transition:opacity 0.55s,transform 0.55s;}
+.reveal.on{opacity:1;transform:translateY(0);}
+@keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.25rem; }
-    .hero { padding: 0 1.5rem 4rem; }
-    section { padding: 4rem 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; }
-    .kv-row { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
-    .hero-scroll { display: none; }
-  }
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}.nav-links{gap:1.25rem;}
+  .hero{padding:7rem 1.5rem 4rem;}
+  section{padding:4rem 1.5rem;}
+  .about-grid{grid-template-columns:1fr;}
+  .kv{grid-template-columns:1fr;}
+  .sk-grid{grid-template-columns:1fr;}
+  .co-btn{padding:1.25rem 1.5rem;}
+  .co-panel{padding:1.25rem 1.5rem 2rem;}
+  .sec-head-p{padding:0 1.5rem 1.25rem;}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <span class="nav-name">PARK HA NA — PORTFOLIO</span>
+  <span class="nav-name">박하나</span>
   <div class="nav-links">
     <a href="#about">소개</a>
     <a href="#career">경력</a>
@@ -241,297 +154,315 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-bg-text">PLANNER</div>
-  <div class="hero-label">UI / UX SERVICE PLANNER</div>
-  <h1 class="hero-name">박<em>하</em>나</h1>
-  <p class="hero-desc">
-    이커머스·헬스케어·B2B 플랫폼까지, 13년간 사용자와 운영자 모두를 위한 서비스를 기획해왔습니다.<br>
-    CS 데이터에서 출발해 FO·BO·PO 전 범위를 아우르는 기획자입니다.
-  </p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <div class="m-label">CAREER</div>
-      <div class="m-val">13년+</div>
+  <div class="hero-inner">
+    <div class="hero-eye">UI / UX SERVICE PLANNER</div>
+    <h1 class="hero-name">박<span class="ul">하나</span></h1>
+    <div class="hero-tags">
+      <span class="hero-tag">서비스 기획</span>
+      <span class="hero-tag">FO · BO 설계</span>
+      <span class="hero-tag">이커머스</span>
+      <span class="hero-tag">헬스케어</span>
     </div>
-    <div class="hero-meta-item">
-      <div class="m-label">PROJECTS</div>
-      <div class="m-val">15개 이상</div>
-    </div>
-    <div class="hero-meta-item">
-      <div class="m-label">DOMAIN</div>
-      <div class="m-val">이커머스 · 헬스케어 · B2B</div>
-    </div>
-    <div class="hero-meta-item">
-      <div class="m-label">CONTACT</div>
-      <div class="m-val" style="color:var(--accent);">✏️ 이메일 추가</div>
+    <p class="hero-desc">FRONT부터 BACK OFFICE까지 —<br>사용자 경험을 설계하고 운영까지 지속되는 견고한 구조를 만들기 위해<br>복잡한 요구사항을 명료하게 정제하고, 아이디어를 지속 가능한 서비스로 완성합니다.</p>
+    <div class="hero-meta">
+      <div class="hm-item"><div class="hm-l">CURRENT</div><div class="hm-v">삼성웰스토리 헬스케어마케팅그룹</div></div>
+      <div class="hm-item"><div class="hm-l">CAREER</div><div class="hm-v">13년+</div></div>
+      <div class="hm-item"><div class="hm-l">CONTACT</div><div class="hm-v"><a href="/cdn-cgi/l/email-protection#10787e717e74746250777d71797c3e737f7d" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--pink);"><span class="__cf_email__" data-cfemail="fd95939c9399998fbd9a909c9491d39e9290">[email&#160;protected]</span></a></div></div>
     </div>
   </div>
-  <div class="hero-scroll">SCROLL</div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-header reveal">
-    <span class="section-num">01</span>
-    <h2 class="section-title">저는 이런 기획자입니다</h2>
+  <div class="sec-head reveal">
+    <span class="sec-n">01</span>
+    <h2 class="sec-t">About me</h2>
   </div>
   <div class="about-grid reveal">
-    <div class="about-cell">
-      <div class="ac-icon">🔍</div>
-      <div class="ac-title">데이터 기반 UX</div>
-      <div class="ac-desc">고객 CS 데이터와 사이트 동향을 직접 분석하여 감이 아닌 근거로 문제를 정의하고 개선 방향을 도출합니다.</div>
+    <div class="ac">
+      <div class="ac-svg"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40"><circle cx="22" cy="22" r="13" stroke="#F2A7BA" stroke-width="2"/><line x1="31.5" y1="31.5" x2="42" y2="42" stroke="#F2A7BA" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="22" x2="28" y2="22" stroke="#F2A7BA" stroke-width="1.5" stroke-linecap="round"/><line x1="22" y1="16" x2="22" y2="28" stroke="#F2A7BA" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="ac-t">인터뷰 기반 요구사항 정의</div>
+      <div class="ac-d">현업 인터뷰와 사용자 분석을 병행해 요구사항의 본질을 파악합니다. 가설을 세우고 근거로 검증하는 방식으로 기획 방향을 정의합니다.</div>
     </div>
-    <div class="about-cell">
-      <div class="ac-icon">🔗</div>
-      <div class="ac-title">FO · BO · PO 전 범위</div>
-      <div class="ac-desc">사용자 화면부터 운영자 백오피스·파트너 오피스까지, 서비스 전 범위를 함께 고려하는 기획을 합니다.</div>
+    <div class="ac">
+      <div class="ac-svg"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect x="6" y="8" width="36" height="10" rx="2" stroke="#F2A7BA" stroke-width="2"/><rect x="6" y="24" width="36" height="10" rx="2" stroke="#F2A7BA" stroke-width="2"/><line x1="14" y1="13" x2="34" y2="13" stroke="#F2A7BA" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="29" x2="28" y2="29" stroke="#F2A7BA" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="ac-t">FO · BO 통합 설계</div>
+      <div class="ac-d">FO 화면 설계에서 끝나지 않고, 운영자가 실제로 쓰는 BO 구조까지 함께 설계합니다. 지속 가능한 운영 구조를 만드는 것이 목표입니다.</div>
     </div>
-    <div class="about-cell">
-      <div class="ac-icon">🏗️</div>
-      <div class="ac-title">0 → 1 구축 경험</div>
-      <div class="ac-desc">인도네시아 iLOTTE, 웰스토리몰, 웰스토리 플러스 헬스케어 기능 등 신규 서비스 구축을 여러 차례 경험했습니다.</div>
+    <div class="ac">
+      <div class="ac-svg"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path d="M24 6 L24 14" stroke="#F2A7BA" stroke-width="2" stroke-linecap="round"/><path d="M24 14 C24 14 16 18 16 26 C16 32 20 36 24 38 C28 36 32 32 32 26 C32 18 24 14 24 14Z" stroke="#F2A7BA" stroke-width="2" stroke-linejoin="round"/><line x1="24" y1="38" x2="24" y2="44" stroke="#F2A7BA" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="42" x2="30" y2="42" stroke="#F2A7BA" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="ac-t">신규 서비스 End-to-End 기획</div>
+      <div class="ac-d">커머스 플랫폼부터 헬스케어 앱까지, 서비스 구조 정의부터 런칭까지 전 과정을 기획했습니다. 새로운 도메인에서도 빠르게 구조를 잡습니다.</div>
     </div>
-    <div class="about-cell">
-      <div class="ac-icon">💬</div>
-      <div class="ac-title">협업 커뮤니케이션</div>
-      <div class="ac-desc">개발·디자인·마케팅·현업 사업부까지 다양한 이해관계자와의 협업에서 병목 없이 프로젝트를 이끌어왔습니다.</div>
+    <div class="ac">
+      <div class="ac-svg"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40"><circle cx="12" cy="24" r="5" stroke="#F2A7BA" stroke-width="2"/><circle cx="36" cy="12" r="5" stroke="#F2A7BA" stroke-width="2"/><circle cx="36" cy="36" r="5" stroke="#F2A7BA" stroke-width="2"/><line x1="17" y1="21" x2="31" y2="15" stroke="#F2A7BA" stroke-width="1.5" stroke-linecap="round"/><line x1="17" y1="27" x2="31" y2="33" stroke="#F2A7BA" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="ac-t">이해관계자 기반 기획 조율</div>
+      <div class="ac-d">개발·디자인·현업·수행사까지, 다양한 이해관계자의 요구를 기획 언어로 정제하고 명확한 산출물로 완성합니다.</div>
     </div>
   </div>
-  <div class="about-tagline reveal">
-    운영 담당자가 실제로 쓰는 BO까지 함께 설계합니다.<br>
-    프론트만 좋은 기획이 아니라, 운영까지 지속 가능한 구조를 만드는 것이 저의 강점입니다.
-  </div>
+
 </section>
 
 <!-- CAREER -->
 <section id="career">
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <h2 class="section-title">경력</h2>
+  <div class="sec-head reveal">
+    <span class="sec-n">02</span>
+    <h2 class="sec-t">Where I've worked</h2>
   </div>
-  <div class="timeline">
-    <div class="tl-item current reveal">
-      <div class="tl-period">2022.07 — 현재</div>
-      <div class="tl-company">삼성웰스토리</div>
-      <div class="tl-role">B2C팀 (2022.07–2023.07) → 헬스케어팀 (2023.07–현재)</div>
-      <div class="badge-row">
-        <span class="badge b-blue">웰스토리몰 FO/BO/PO 구축</span>
-        <span class="badge b-blue">헬스케어 기능 기획</span>
-        <span class="badge b-blue">걷기챌린지·배틀</span>
-        <span class="badge b-blue">포인트·코인 시스템</span>
-        <span class="badge b-blue">B2C 회원구조 전환</span>
+  <div class="tl">
+    <div class="tl-item now reveal">
+      <div class="tl-p">2022.07 — 현재</div>
+      <div class="tl-c">삼성웰스토리</div>
+      <div class="tl-r">B2C팀 (2022.07–2023.07) → 헬스케어팀 (2023.07–현재)</div>
+      <div class="bdg-row">
+        <span class="bdg bd-blue">웰스토리몰 재구축</span>
+        <span class="bdg bd-blue">W<sup>+</sup> 헬스케어 기능 도입</span>
+        <span class="bdg bd-blue">걷기챌린지·배틀</span>
+        <span class="bdg bd-blue">B2C 회원구조 전환</span>
       </div>
     </div>
     <div class="tl-item reveal">
-      <div class="tl-period">2021 — 2022</div>
-      <div class="tl-company">이랜드리테일</div>
-      <div class="tl-role">서비스 기획팀</div>
-      <div class="badge-row">
-        <span class="badge b-purple">이랜드몰 UX 고도화</span>
-        <span class="badge b-purple">E키즈샵·킴스몰 리뉴얼</span>
-        <span class="badge b-purple">팝업형 GNB</span>
-        <span class="badge b-purple">주얼리 빠른배송</span>
+      <div class="tl-p">2019 — 2022</div>
+      <div class="tl-c">이랜드리테일</div>
+      <div class="tl-r">서비스 기획팀</div>
+      <div class="bdg-row">
+        <span class="bdg bd-purple">이랜드몰 UX 고도화</span>
+        <span class="bdg bd-purple">킴스몰 안심환불</span>
+        <span class="bdg bd-purple">E키즈샵·팝업형 GNB 등</span>
       </div>
     </div>
     <div class="tl-item reveal">
-      <div class="tl-period">2013 — 2019</div>
-      <div class="tl-company">아이피그룹 (롯데 계열)</div>
-      <div class="tl-role">기획팀 · 약 6년</div>
-      <div class="badge-row">
-        <span class="badge b-teal">롯데백화점 반응형 리뉴얼</span>
-        <span class="badge b-teal">롯데면세점 리뉴얼</span>
-        <span class="badge b-teal">인도네시아 iLOTTE 런칭</span>
-        <span class="badge b-teal">롯데아울렛·타운</span>
+      <div class="tl-p">2013 — 2019</div>
+      <div class="tl-c">아이피그룹</div>
+      <div class="tl-r">기획팀 · 약 6년</div>
+      <div class="bdg-row">
+        <span class="bdg bd-green">롯데백화점 반응형 리뉴얼</span>
+        <span class="bdg bd-green">롯데인터넷면세점 리뉴얼</span>
+        <span class="bdg bd-green">롯데아울렛·타운</span>
       </div>
     </div>
     <div class="tl-item reveal">
-      <div class="tl-period">2010 — 2013</div>
-      <div class="tl-company">다음서비스</div>
-      <div class="tl-role">서비스 기획팀 · 약 3년</div>
-      <div class="badge-row">
-        <span class="badge b-teal">쇼핑하우 리뉴얼</span>
-        <span class="badge b-teal">테마 기획전 구축</span>
+      <div class="tl-p">2010 — 2013</div>
+      <div class="tl-c">다음서비스</div>
+      <div class="tl-r">서비스 기획팀 · 약 3년</div>
+      <div class="bdg-row">
+        <span class="bdg bd-gray">쇼핑하우 리뉴얼</span>
+        <span class="bdg bd-gray">테마 기획전 구축</span>
       </div>
     </div>
     <div class="tl-item reveal">
-      <div class="tl-period">2005 — 2010</div>
-      <div class="tl-company">덕성여자대학교</div>
-      <div class="tl-role">인터넷정보공학 학사 / 경영학 부전공</div>
+      <div class="tl-p">2005 — 2010</div>
+      <div class="tl-c">덕성여자대학교</div>
+      <div class="tl-r">인터넷정보공학 학사 / 경영학 부전공</div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-header reveal">
-    <span class="section-num">03</span>
-    <h2 class="section-title">주요 프로젝트</h2>
+  <div class="sec-head sec-head-p reveal">
+    <span class="sec-n">03</span>
+    <h2 class="sec-t">What I've built</h2>
   </div>
 
-  <div class="proj-divider reveal">SAMSUNG WELSTORY — 2022–현재</div>
+  <!-- 삼성웰스토리 -->
+  <div class="reveal">
+    <button class="co-btn open" onclick="toggle(this)">
+      <div class="co-badge" style="background:#1428A0;">SW</div>
+      <span class="co-nm">삼성웰스토리</span>
+      <span class="co-pr">2022.07 — 현재</span>
+      <span class="co-ar">▼</span>
+    </button>
+    <div class="co-panel open">
 
-  <div class="proj-card featured reveal">
-    <div class="proj-top">
-      <div class="proj-title">웰스토리 플러스 — 걷기챌린지·배틀·포인트·회원구조 개편</div>
-      <span class="proj-status">진행중</span>
-    </div>
-    <div class="proj-meta">헬스케어팀 · 2025.10–현재 · App / BO / Admin</div>
-    <div class="proj-body">헬스케어 앱의 사용자 참여도를 높이기 위한 대규모 기능 확장 프로젝트. 걷기 기반 경쟁 시스템, 포인트·코인 혜택 구조, B2C 회원 확장을 위한 구조 개편을 동시에 기획했습니다.</div>
-    <ul class="feat-list">
-      <li><strong>걷기챌린지</strong> — 개인전/팀전 설정, 기간별 걸음수 경쟁 및 리워드 지급 플로우 설계</li>
-      <li><strong>걷기배틀</strong> — 사용자가 FO에서 직접 방 개설·친구 초대·공개 참여 가능한 P2P 경쟁 시스템</li>
-      <li><strong>포인트·코인 시스템</strong> — 재화 획득 경로 다양화, 코인 개념 신설 및 어드민 내역 관리 메뉴 설계</li>
-      <li><strong>B2C 회원구조 전환</strong> — 기업 중심 구조를 개인 기준으로 재설계, 일반 사용자도 가입 가능하도록 구조 변경</li>
-    </ul>
-  </div>
-
-  <div class="proj-card featured reveal">
-    <div class="proj-top">
-      <div class="proj-title">웰스토리 플러스 — 챌린지·영양상담·채팅상담 기능 신설</div>
-    </div>
-    <div class="proj-meta">헬스케어팀 · 2023.07–2025.09 · App / BO / Admin</div>
-    <div class="proj-body">식단 메뉴 조회 앱에 헬스케어 기능을 최초 도입한 프로젝트. 영양과 건강의 연결을 서비스화하는 방향으로 기능 전체를 기획했습니다.</div>
-    <ul class="feat-list">
-      <li><strong>건강 챌린지</strong> — 스마트워치 등 각종 디바이스 연동을 통한 건강 지표 기록 및 챌린지 플로우 기획</li>
-      <li><strong>영양·채팅 상담</strong> — 상담사 자동 배정 로직, 1:1 채팅 상담 시스템 및 채팅 서버 구축 기획</li>
-      <li><strong>상담사 관리 어드민</strong> — 상담사 인원·휴가·배정 현황을 관리하는 BO 메뉴 전체 설계</li>
-    </ul>
-    <div class="kv-row">
-      <div class="kv">
-        <div class="kv-label">핵심 난이도</div>
-        <div class="kv-val">디바이스 연동 스펙 정의 + 채팅 서버 구축 기획</div>
+      <div class="pj main">
+        <div class="pj-top">
+          <div class="pj-t">삼성 임직원 전용 복지몰(웰스토리몰) 전면 재구축</div>
+          <span class="pj-tag tag-main">핵심</span>
+        </div>
+        <div class="pj-m">B2C팀 · 2022.07–2023.07 · Web / Mobile / App / BO / PO</div>
+        <div class="pj-b">기존 커머스몰을 FO·BO·PO 전 영역에 걸쳐 전면 재구축. 복지몰을 개별 구축하던 방식을 플랫폼화하여 버튼 하나로 독립 복지몰을 생성·운영할 수 있는 체계를 설계했습니다.</div>
+        <ul class="fl">
+        <li><strong>복지몰 플랫폼화</strong> — 개별 구축하던 방식을 원클릭 생성 체계로 전환, 확장 가능한 구조 설계. 웰스토리몰 상품 큐레이션 + 전용 상품 등록 + Web/Mo 오픈까지 지원</li>
+          <li><strong>계열사별 전시 분기</strong> — 모든 콘텐츠·상품을 삼성 계열사 단위까지 전시 여부를 개별 설정할 수 있는 권한 구조 설계</li>
+          <li><strong>레코픽 연동</strong> — 외부 상품 추천 솔루션 연동을 통한 계열사별 커스텀 FO 개인화 제공</li>
+        </ul>
       </div>
-      <div class="kv">
-        <div class="kv-label">기획 범위</div>
-        <div class="kv-val">FO(앱) + 어드민 BO 전체</div>
+
+      <div class="pj main">
+        <div class="pj-top">
+          <div class="pj-t">W<sup>+</sup> 2.1 — 건강 지표 조회 앱을 상담 가능한 헬스케어 서비스로</div>
+          <span class="pj-tag tag-main">핵심</span>
+        </div>
+        <div class="pj-m">헬스케어팀 · 2023.07–2025.09 · App / BO / Admin</div>
+        <div class="pj-b">단순 건강 지표 확인에 그쳤던 앱을, 그 지표를 기반으로 상담이 가능한 서비스로 발전시킨 프로젝트. 비즈니스 모델 구현을 위해 내부 채팅 상담 시스템을 직접 설계하고, 연동 디바이스도 확장했습니다.</div>
+        <ul class="fl">
+          <li><strong>채팅 상담 시스템 구축</strong> — 상담사 자동 배정 로직, 1:1 채팅 상담 플로우 및 채팅 서버 구축 기획. FO에서 끝나지 않고 상담사 운영 BO까지 전 범위 설계</li>
+          <li><strong>디바이스 연동 확장</strong> — 스마트워치 등 연동 기기 확장, 건강 지표 수집 및 챌린지 플로우 기획</li>
+          <li><strong>상담사 관리 어드민</strong> — 상담사 인원·휴가·배정 현황까지 운영자 입장에서 설계한 BO 전체</li>
+        </ul>
+        <div class="kv">
+          <div class="kv-cell"><div class="kv-l">핵심 난이도</div><div class="kv-v">디바이스 연동 스펙 정의 + 채팅 서버 구축 기획</div></div>
+          <div class="kv-cell"><div class="kv-l">기획 범위</div><div class="kv-v">FO(앱) + 어드민 BO 전체</div></div>
+        </div>
+      </div>
+
+      <div class="pj main">
+        <div class="pj-top">
+          <div class="pj-t">B2B에서 B2C까지 — 사용자 기반 확장을 위한 서비스 재설계</div>
+          <span class="pj-tag tag-main">핵심</span>
+        </div>
+        <div class="pj-m">헬스케어팀 · 2025.10–현재 · App / BO / Admin</div>
+        <div class="pj-b">B2B(기업 식당 기반) 전용이었던 W<sup>+</sup>를 B2B·B2B2C·B2C까지 아우르는 구조로 전환하기 위한 대규모 재설계 프로젝트. 회원구조 변경을 중심으로 참여 동기를 높이는 게이미피케이션 기능을 함께 기획했습니다.</div>
+        <ul class="fl">
+          <li><strong>회원구조 B2C 전환</strong> — 식당(기업) 중심 구조를 개인 기준으로 재설계, 일반 사용자도 가입 가능하도록 구조 변경</li>
+          <li><strong>걷기챌린지</strong> — 개인전/팀전 설정, 기간별 걸음수 경쟁 및 리워드 지급 플로우 설계</li>
+          <li><strong>걷기배틀</strong> — 사용자가 FO에서 직접 방 개설·친구 초대·공개 참여 가능한 P2P 경쟁 시스템</li>
+          <li><strong>포인트·코인 시스템</strong> — 재화 획득 경로 다양화, 코인 개념 신설 및 어드민 내역 관리 메뉴 설계</li>
+        </ul>
+      </div>
+
+      <div class="sub-pj">
+        <div class="sub-t">서브 프로젝트 — CGM 연속혈당 그래프 내 운동·걸음수 기능 추가</div>
+        <div class="sub-d">혈당 그래프 타임라인에 운동·복약 데이터 통합, 혈당 스파이크 실시간 감지 및 행동 유도 UX 설계, BO 상담사용 CGM 조회 화면 설계. <a href="cgm.html" style="color:var(--pink2);text-decoration:none;border-bottom:1px solid var(--pink);">상세 기획 보기 →</a></div>
+      </div>
+
+      <div class="ops">
+        <div class="ops-l">운영으로 처리</div>
+        <div class="ops-v">W<sup>+</sup> 앱 일반 운영 및 기능 개선 · 어드민 소규모 업데이트</div>
       </div>
     </div>
   </div>
 
-  <div class="proj-card featured reveal">
-    <div class="proj-top">
-      <div class="proj-title">웰스토리몰 — 삼성 임직원 전용 커머스 FO/BO/PO 구축</div>
-    </div>
-    <div class="proj-meta">B2C팀 · 2022.07–2023.07 · Web / Mobile / App / BO / PO</div>
-    <div class="proj-body">삼성 임직원 전용 커머스 플랫폼 전체를 신규 구축. FO·BO·PO 전 영역을 기획했으며, 두 가지 핵심 기능이 이 서비스의 차별점입니다.</div>
-    <div class="kv-row">
-      <div class="kv">
-        <div class="kv-label">핵심 기능 1 — 계열사별 전시 분기</div>
-        <div class="kv-val">모든 콘텐츠·상품을 삼성 계열사 단위까지 전시 여부를 개별 설정할 수 있는 권한 구조 설계</div>
+  <!-- 이랜드 -->
+  <div class="reveal">
+    <button class="co-btn" onclick="toggle(this)">
+      <div class="co-badge" style="background:#E3001B;">ER</div>
+      <span class="co-nm">이랜드리테일</span>
+      <span class="co-pr">2019 — 2022</span>
+      <span class="co-ar">▼</span>
+    </button>
+    <div class="co-panel">
+      <div class="pj main">
+        <div class="pj-top">
+          <div class="pj-t">이랜드몰 UI/UX 고도화</div>
+          <span class="pj-tag tag-main">핵심</span>
+        </div>
+        <div class="pj-m">2020.12–2021.05 · PC / Mobile / BO</div>
+        <div class="pj-b">고객 CS 데이터를 직접 분석하여 주요 불편 포인트를 도출하고 PC·모바일 UI/UX를 개선. 내부 운영자 편의를 위한 BO 개선도 함께 기획했습니다.</div>
       </div>
-      <div class="kv">
-        <div class="kv-label">핵심 기능 2 — 원클릭 복지몰 생성</div>
-        <div class="kv-val">버튼 하나로 독립 복지몰 생성. 웰스토리몰 상품 큐레이션 + 전용 상품 등록 + Web/Mo 오픈 지원</div>
+      <div class="pj">
+        <div class="pj-top">
+          <div class="pj-t">킴스몰 리뉴얼 — 안심환불 서비스 신설</div>
+          <span class="pj-tag tag-sub">보조</span>
+        </div>
+        <div class="pj-m">2020.12–2021.05 · PC / Mobile / BO</div>
+        <div class="pj-b">고객 관점 UI/UX 전면 반영 리뉴얼. 신선식품 특성에 맞는 안심환불 서비스를 신규 제안·기획하여 구매 불안 요소를 제거했습니다.</div>
+      </div>
+      <div class="ops">
+        <div class="ops-l">운영으로 처리</div>
+        <div class="ops-v">E키즈샵 리뉴얼 · 팝업형 GNB · 주얼리 빠른배송 · 브랜드몰 리뉴얼 다수</div>
       </div>
     </div>
   </div>
 
-  <div class="proj-divider reveal">ELAND RETAIL — 2021–2022</div>
-
-  <div class="proj-card reveal">
-    <div class="proj-title">이랜드몰 UI/UX 고도화</div>
-    <div class="proj-meta">2020.12–2021.05 · PC / Mobile / BO</div>
-    <div class="proj-body">고객 CS 데이터를 분석하여 주요 불편 포인트를 도출하고 PC·모바일 UI/UX 개선. 내부 운영자 편의를 위한 BO 개선도 함께 기획했습니다.</div>
+  <!-- 아이피그룹 -->
+  <div class="reveal">
+    <button class="co-btn" onclick="toggle(this)">
+      <div class="co-badge" style="background:#1B3A6B;">IP</div>
+      <span class="co-nm">아이피그룹</span>
+      <span class="co-pr">2013 — 2019</span>
+      <span class="co-ar">▼</span>
+    </button>
+    <div class="co-panel">
+      <div class="pj main">
+        <div class="pj-top">
+          <div class="pj-t">롯데백화점·인터넷면세점 홈페이지 리뉴얼</div>
+          <span class="pj-tag tag-main">핵심</span>
+        </div>
+        <div class="pj-m">2015–2017 · PC / Mobile / APP / BO</div>
+        <div class="pj-b">롯데백화점 반응형 전면 리뉴얼(2015–2016)과 롯데인터넷면세점 리뉴얼(2017)을 담당. PC·모바일·앱 전 채널 화면 기획 및 이벤트·콘텐츠 운영 기획을 병행했습니다.</div>
+        <ul class="fl">
+          <li><strong>롯데백화점</strong> — 반응형 기능 반영, 여러 기기 최적화 리뉴얼. 이벤트·쇼핑뉴스·콘텐츠 기획 운영</li>
+          <li><strong>롯데인터넷면세점</strong> — 트렌드 반영 배너 구조 개선으로 가독성 향상. 이벤트·콘텐츠 기획 운영</li>
+        </ul>
+      </div>
+      <div class="ops">
+        <div class="ops-l">운영으로 처리</div>
+        <div class="ops-v">롯데아울렛 브릿지 페이지 · 롯데타운 리뉴얼 · 콘텐츠 운영 다수</div>
+      </div>
+    </div>
   </div>
 
-  <div class="proj-card reveal">
-    <div class="proj-title">킴스몰 리뉴얼 — 안심환불 서비스 신설</div>
-    <div class="proj-meta">2020.12–2021.05 · PC / Mobile / BO</div>
-    <div class="proj-body">고객 관점 UI/UX 전면 반영 리뉴얼. 신선식품 특성에 맞는 안심환불 서비스를 신규 기획하여 구매 불안 요소를 제거했습니다.</div>
+  <!-- 다음서비스 -->
+  <div class="reveal">
+    <button class="co-btn" onclick="toggle(this)">
+      <div class="co-badge" style="background:#00A650;">DS</div>
+      <span class="co-nm">다음서비스</span>
+      <span class="co-pr">2010 — 2013</span>
+      <span class="co-ar">▼</span>
+    </button>
+    <div class="co-panel">
+      <div class="pj">
+        <div class="pj-t">쇼핑하우 홈페이지 리뉴얼 및 테마 기획전 신설</div>
+        <div class="pj-m" style="margin-top:6px;">2012 · PC / Mobile / APP / BO</div>
+        <div class="pj-b">홈페이지 전면 리뉴얼로 고객 편의 도모. 트렌디한 상품 큐레이션 기반의 테마형 기획전 영역을 신규 구축했습니다.</div>
+      </div>
+    </div>
   </div>
 
-  <div class="proj-card reveal">
-    <div class="proj-title">이랜드몰 주얼리 빠른배송 서비스</div>
-    <div class="proj-meta">2020.03–2020.08 · PC / Mobile / BO</div>
-    <div class="proj-body">로이드·OST·클루 3개 브랜드 빠른배송 기획. 오늘출발·오늘도착 기준 출고지 지정 로직을 서비스 플로우로 설계했습니다.</div>
-  </div>
-
-  <div class="proj-divider reveal">IPIG GROUP / DAUM — 2010–2019</div>
-
-  <div class="proj-card reveal">
-    <div class="proj-title">인도네시아 iLOTTE — 통합 쇼핑몰 최초 런칭</div>
-    <div class="proj-meta">아이피그룹 · 2016.09–2017.03 · PC / Mobile / BO</div>
-    <div class="proj-body">백화점·쇼핑몰·마트를 아우르는 롯데 인도네시아 통합 커머스 최초 런칭. 상품 상세·카테고리·검색결과 등 핵심 화면 기획 담당.</div>
-  </div>
-
-  <div class="proj-card reveal">
-    <div class="proj-title">롯데백화점 반응형 홈페이지 리뉴얼</div>
-    <div class="proj-meta">아이피그룹 · 2015.09–2016.01 · PC / Mobile / APP / BO</div>
-    <div class="proj-body">반응형 웹 기반 전면 리뉴얼. PC·모바일·앱 전 채널 화면 기획 및 이벤트·컨텐츠 운영 기획 담당.</div>
-  </div>
-
-  <div class="proj-card reveal">
-    <div class="proj-title">다음 쇼핑하우 리뉴얼 및 테마 기획전 신설</div>
-    <div class="proj-meta">다음서비스 · 2012.04–2012.09 · PC / Mobile / APP / BO</div>
-    <div class="proj-body">홈페이지 전면 리뉴얼로 고객 편의 도모. 트렌디한 상품 큐레이션 기반의 테마형 기획전 영역을 신규 구축했습니다.</div>
-  </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-header reveal">
-    <span class="section-num">04</span>
-    <h2 class="section-title">스킬 & 도구</h2>
+  <div class="sec-head reveal">
+    <span class="sec-n">04</span>
+    <h2 class="sec-t">스킬 & 도구</h2>
   </div>
-  <div class="skills-grid reveal">
-    <div class="skill-cell">
-      <div class="sk-label">기획 역량</div>
+  <div class="sk-grid reveal">
+    <div class="sk-cell">
+      <div class="sk-l">기획 역량</div>
       <div class="sk-item">화면설계서 (IA / Wireframe)</div>
       <div class="sk-item">서비스 플로우 설계</div>
       <div class="sk-item">FO · BO · PO 전 범위 기획</div>
       <div class="sk-item">CS 분석 기반 UX 개선</div>
-      <div class="sk-item">신규 서비스 0→1 구축</div>
+      <div class="sk-item">신규 서비스 구축 기획</div>
     </div>
-    <div class="skill-cell">
-      <div class="sk-label">도메인</div>
+    <div class="sk-cell">
+      <div class="sk-l">도메인</div>
       <div class="sk-item">이커머스 (패션·뷰티·주얼리·식품)</div>
-      <div class="sk-item">헬스케어 앱</div>
-      <div class="sk-item">B2B · B2C 플랫폼</div>
+      <div class="sk-item">헬스케어 앱 (CGM·디바이스 연동)</div>
+      <div class="sk-item">B2B · B2B2C · B2C 플랫폼</div>
       <div class="sk-item">임직원 복지몰 플랫폼</div>
-      <div class="sk-item">해외 커머스 (인도네시아)</div>
     </div>
-    <div class="skill-cell">
-      <div class="sk-label">툴 — 기획·문서</div>
+    <div class="sk-cell">
+      <div class="sk-l">툴</div>
       <div class="sk-item">PowerPoint (화면설계서)</div>
       <div class="sk-item">Excel (데이터 정리·분석)</div>
-      <div class="sk-item">Confluence (기획 문서화)</div>
       <div class="sk-item">Jira (이슈 트래킹·스프린트)</div>
-      <div class="sk-item sk-learning">
-        Figma
-        <span class="sk-learning-tag">학습중</span>
-      </div>
+      <div class="sk-item">Confluence (기획 문서화)</div>
+      <div class="sk-item">Figma <span class="sk-badge">학습중</span></div>
     </div>
-    <div class="skill-cell">
-      <div class="sk-label">협업 경험</div>
+    <div class="sk-cell">
+      <div class="sk-l">협업 경험</div>
       <div class="sk-item">개발팀 요건 정의 및 커뮤니케이션</div>
       <div class="sk-item">디자인 검토 및 피드백</div>
       <div class="sk-item">현업 사업부 미팅 주도</div>
       <div class="sk-item">다부서 이해관계자 조율</div>
-      <div class="sk-item">해외 파트너사 협업</div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-name">박하나</div>
-  <div class="footer-contact">✏️ 이메일 · 링크드인 추가</div>
-  <div class="footer-note">UI/UX SERVICE PLANNER · 2025</div>
+  <div class="ft-name">박하나</div>
+  <div class="ft-note">✏️ 이메일 · 링크드인 추가 &nbsp;·&nbsp; UI/UX SERVICE PLANNER · 2025</div>
 </footer>
 
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggle(btn){
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+const els = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entrie
